@@ -33,7 +33,7 @@ about:
   home: https://pendulum.eustace.io
   license: MIT
   license_family: MIT
-  license_file: LICENSE
+  # license_file: LICENSE
   summary: 'Python datetimes made easy'
   description: |
     Drop-in replacement for the standard datetime class.

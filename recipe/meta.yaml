@@ -9,18 +9,20 @@ source:
   sha256: b06a0ca1bfe41c990bbf0c029f0b6501a7f2ec4e38bfec730712015e8860f207
 
 build:
-  number: 1
-  noarch: python
+  number: 2
   script:
+    - export PENDULUM_EXTENSIONS=1  # [not win]
+    - set PENDULUM_EXTENSIONS=1  # [win]
     - {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
-    - poetry-core
+    - poetry-core >=1.0.0a9
+    - {{ compiler('c') }}
   run:
-    - python >=3.6
+    - python
     - python-dateutil >=2.6,<3.0
     - pytzdata >=2020.1
 

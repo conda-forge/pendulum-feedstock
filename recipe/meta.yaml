@@ -31,9 +31,11 @@ test:
     - pip
   commands:
     - pip check
+    # make sure the extensions actually built (this might be fragile since these modules are private)
+    - python -c "from pendulum.parsing._iso8601 import parse_iso8601"
+    - python -c "from pendulum._extensions._helpers import days_in_year"
   imports:
     - pendulum
-
 about:
   home: https://pendulum.eustace.io
   license: MIT

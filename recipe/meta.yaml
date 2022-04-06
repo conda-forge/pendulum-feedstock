@@ -9,7 +9,7 @@ source:
   sha256: b06a0ca1bfe41c990bbf0c029f0b6501a7f2ec4e38bfec730712015e8860f207
 
 build:
-  number: 3
+  number: 4
   script:
     - export PENDULUM_EXTENSIONS=1  # [not win]
     - set PENDULUM_EXTENSIONS=1  # [win]
@@ -35,8 +35,8 @@ test:
   commands:
     - pip check
     # make sure the extensions actually built (this might be fragile since these modules are private)
-    - python -c "from pendulum.parsing._iso8601 import parse_iso8601"
-    - python -c "from pendulum._extensions._helpers import days_in_year"
+    - python -c "from pendulum.parsing._iso8601 import parse_iso8601"  # [python_impl == 'cpython']
+    - python -c "from pendulum._extensions._helpers import days_in_year"  # [python_impl == 'cpython']
   imports:
     - pendulum
 about:

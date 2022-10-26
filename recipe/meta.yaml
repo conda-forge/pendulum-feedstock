@@ -9,7 +9,7 @@ source:
   sha256: b06a0ca1bfe41c990bbf0c029f0b6501a7f2ec4e38bfec730712015e8860f207
 
 build:
-  number: 4
+  number: 5
   script:
     - export PENDULUM_EXTENSIONS=1  # [not win]
     - set PENDULUM_EXTENSIONS=1  # [win]

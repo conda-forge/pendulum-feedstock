@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pendulum-{{ version }}.tar.gz
   sha256: 5d034998dea404ec31fae27af6b22cff1708f830a1ed7353be4d1019bb9f584e
+  patches:
+    - 0001-remove-tzdata-dep-for-pip-check.patch
 
 build:
   number: 0

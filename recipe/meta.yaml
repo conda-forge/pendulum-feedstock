@@ -43,8 +43,8 @@ test:
   commands:
     - pip check
     # make sure the extensions actually built (this might be fragile since these modules are private)
-    - python -c "from pendulum.parsing._iso8601 import parse_iso8601"  # [python_impl == 'cpython']
-    - python -c "from pendulum._extensions._helpers import days_in_year"  # [python_impl == 'cpython']
+    - python -c "from pendulum._pendulum import parse_iso8601"  # [python_impl == 'cpython']
+    - python -c "from pendulum._helpers import days_in_year"  # [python_impl == 'cpython']
   imports:
     - pendulum
 about:

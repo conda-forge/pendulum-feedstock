@@ -22,7 +22,13 @@ declare -a _xtra_maturin_args
 
 mkdir -p $SRC_DIR/.cargo
 
-if [ "$target_platform" = "osx-64" ] ; then
+if [ "$target_platform" = "linux-ppc64le" ] ; then
+
+    # following https://github.com/conda-forge/watchfiles-feedstock/blob/649985fc7b59232b7fb23f188a7ac4d1b17c6111/recipe/meta.yaml#L17
+    # PyPy has weird sysconfigdata name
+    rm -f $PREFIX/lib/pypy$PY_VER/_sysconfigdata.py
+
+elif [ "$target_platform" = "osx-64" ] ; then
     cat <<EOF >> $SRC_DIR/.cargo/config
 [target.x86_64-apple-darwin]
 linker = "$CC"

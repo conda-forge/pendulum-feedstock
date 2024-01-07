@@ -13,10 +13,6 @@ source:
 
 build:
   number: 0
-  script:
-    - export PENDULUM_EXTENSIONS=1  # [not win]
-    - set PENDULUM_EXTENSIONS=1  # [win]
-    - {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   build:

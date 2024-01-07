@@ -61,6 +61,11 @@ EOF
     # xref: https://github.com/conda-forge/python-feedstock/issues/621
     sed -i.bak 's,aarch64,arm64,g' $BUILD_PREFIX/venv/lib/os-patch.py
     sed -i.bak 's,aarch64,arm64,g' $BUILD_PREFIX/venv/lib/platform-patch.py
+
+elif [ "$target_platform" = "linux-ppc64le" ] ; then
+    # as above
+    export PYO3_CROSS_LIB_DIR=$PREFIX/lib
+    export PYO3_PYTHON_VERSION=${PY_VER}
 fi
 
 maturin build -vv -j "${CPU_COUNT}" --release --strip --manylinux off --interpreter="${PYTHON}" "${_xtra_maturin_args[@]}"

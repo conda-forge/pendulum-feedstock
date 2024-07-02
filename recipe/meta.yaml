@@ -61,7 +61,6 @@ extra:
     reason: Dependency for microsoft-kiota-serialization-json
     recipe-maintainers:
       - ianaobi
-      - bkreider
 
   recipe-maintainers:
     - ocefpaf

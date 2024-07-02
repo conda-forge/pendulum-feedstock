@@ -1,37 +1,48 @@
-{% set version = "2.1.2" %}
+{% set name = "pendulum" %}
+{% set version = "3.0.0" %}
 
 package:
   name: pendulum
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/pendulum/pendulum-{{ version }}.tar.gz
-  sha256: b06a0ca1bfe41c990bbf0c029f0b6501a7f2ec4e38bfec730712015e8860f207
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pendulum-{{ version }}.tar.gz
+  sha256: 5d034998dea404ec31fae27af6b22cff1708f830a1ed7353be4d1019bb9f584e
+  patches:
+    - 0001-remove-tzdata-dep-for-pip-check.patch
 
 build:
-  number: 1
-  noarch: python
-  script:
-    - {{ PYTHON }} -m pip install . --no-deps -vv
+  number: 0
 
 requirements:
+  build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - maturin >=1.0,<2.0                     # [build_platform != target_platform]
+    - {{ compiler('rust') }}
   host:
-    - python >=3.6
-    - pip
+    - python
+    - maturin >=1.0,<2.0
     - poetry-core
+    - pip
   run:
-    - python >=3.6
-    - python-dateutil >=2.6,<3.0
-    - pytzdata >=2020.1
+    - python
+    - python-dateutil >=2.6
+    - tzdata >=2020.1
+    - backports.zoneinfo >=0.2.1  # [py<39]
+    - time-machine >=2.6.0  # [python_impl == 'cpython']
+    - importlib-resources >=5.9.0  # [py<39]
 
 test:
   requires:
     - pip
   commands:
     - pip check
+    # make sure the extensions actually built (this might be fragile since these modules are private)
+    - python -c "from pendulum._pendulum import parse_iso8601"  # [python_impl == 'cpython']
+    - python -c "from pendulum._helpers import days_in_year"  # [python_impl == 'cpython']
   imports:
     - pendulum
-
 about:
   home: https://pendulum.eustace.io
   license: MIT
@@ -45,7 +56,12 @@ about:
   dev_url: https://github.com/sdispater/pendulum
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/48409
+    reason: Dependency for microsoft-kiota-serialization-json
+    recipe-maintainers:
+      - ianaobi
+
   recipe-maintainers:
-    - mcs07
     - ocefpaf
     - xylar

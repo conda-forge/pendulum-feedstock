@@ -32,6 +32,7 @@ requirements:
     - backports.zoneinfo >=0.2.1  # [py<39]
     - time-machine >=2.6.0  # [python_impl == 'cpython']
     - importlib-resources >=5.9.0  # [py<39]
+    - libgcc-ng
 
 test:
   requires:

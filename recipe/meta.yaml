@@ -1,18 +1,18 @@
 {% set name = "pendulum" %}
-{% set version = "3.0.0" %}
+{% set version = "3.1.0" %}
 
 package:
   name: pendulum
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pendulum-{{ version }}.tar.gz
-  sha256: 5d034998dea404ec31fae27af6b22cff1708f830a1ed7353be4d1019bb9f584e
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pendulum-{{ version }}.tar.gz
+  sha256: 66f96303560f41d097bee7d2dc98ffca716fbb3a832c4b3062034c2d45865015
   patches:
     - 0001-remove-tzdata-dep-for-pip-check.patch
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:

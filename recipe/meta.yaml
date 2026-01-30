@@ -1,5 +1,5 @@
 {% set name = "pendulum" %}
-{% set version = "3.1.0" %}
+{% set version = "3.2.0" %}
 
 package:
   name: pendulum
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pendulum-{{ version }}.tar.gz
-  sha256: 66f96303560f41d097bee7d2dc98ffca716fbb3a832c4b3062034c2d45865015
+  sha256: e80feda2d10fa3ff8b1526715f7d33dcb7e08494b3088f2c8a3ac92d4a4331ce
   patches:
     - 0001-remove-tzdata-dep-for-pip-check.patch
 
@@ -31,9 +31,8 @@ requirements:
     - python
     - python-dateutil >=2.6
     - tzdata >=2020.1
-    - backports.zoneinfo >=0.2.1  # [py<39]
-    - time-machine >=2.6.0  # [python_impl == 'cpython']
-    - importlib-resources >=5.9.0  # [py<39]
+    # from test extra
+    - time-machine >=2.6.0,<3.0.0
 
 test:
   requires:
@@ -41,8 +40,8 @@ test:
   commands:
     - pip check
     # make sure the extensions actually built (this might be fragile since these modules are private)
-    - python -c "from pendulum._pendulum import parse_iso8601"  # [python_impl == 'cpython']
-    - python -c "from pendulum._helpers import days_in_year"  # [python_impl == 'cpython']
+    - python -c "from pendulum._pendulum import parse_iso8601"
+    - python -c "from pendulum._helpers import days_in_year"
   imports:
     - pendulum
 about:

@@ -1,3 +1,5 @@
+cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+
 set PENDULUM_EXTENSIONS=1
 
 maturin build -vv -j %CPU_COUNT% --release --strip --manylinux off --interpreter=%PYTHON%

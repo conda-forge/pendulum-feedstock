@@ -3,7 +3,7 @@ About pendulum-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pendulum-feedstock/blob/main/LICENSE.txt)
 
-Home: https://pendulum.eustace.io
+Home: https://pendulum.eustace.io/
 
 Package license: MIT
 
@@ -15,7 +15,6 @@ Documentation: https://pendulum.eustace.io/docs/
 
 Drop-in replacement for the standard datetime class.
 It behaves exactly like it but with many improvements.
-
 
 Current build status
 ====================

@@ -2,6 +2,10 @@
 
 set -ex
 
+cd rust
+cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml
+cd ..
+
 export PENDULUM_EXTENSIONS=1
 
 # closely following https://github.com/conda-forge/dask-sql-feedstock/blob/8cf4fd16d5e25c57f52a0162d55f795ddd995307/recipe/build.sh

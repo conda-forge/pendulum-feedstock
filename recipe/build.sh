@@ -3,7 +3,7 @@
 set -ex
 
 cd rust
-cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml
 cd ..
 
 export PENDULUM_EXTENSIONS=1

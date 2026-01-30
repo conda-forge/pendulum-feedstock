@@ -1,5 +1,5 @@
 cd rust
-cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+cargo-bundle-licenses --format yaml --output ../THIRDPARTY.yml
 cd ..
 
 set PENDULUM_EXTENSIONS=1

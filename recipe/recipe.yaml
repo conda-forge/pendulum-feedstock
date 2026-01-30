@@ -27,7 +27,8 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
     - ${{ compiler('rust') }}
-  host:
+    - cargo-bundle-licenses
+   host:
     - python
     - maturin >=1.0,<2.0
     - poetry-core
@@ -50,7 +51,9 @@ tests:
 
 about:
   license: MIT
-  license_file: LICENSE
+  license_file: 
+    - THIRDPARTY.yml
+    - LICENSE
   summary: Python datetimes made easy
   description: |
     Drop-in replacement for the standard datetime class.

@@ -20,11 +20,10 @@ build:
 requirements:
   build:
     - if: build_platform != target_platform
-      then: python
-    - if: build_platform != target_platform
-      then: cross-python_${{ target_platform }}
-    - if: build_platform != target_platform
-      then: maturin >=1.0,<2.0
+      then: 
+        - python
+        - cross-python_${{ target_platform }}
+        - maturin >=1.0,<2.0
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
     - ${{ compiler('rust') }}
@@ -44,11 +43,8 @@ tests:
   - python:
       imports:
         - pendulum
-  - requirements:
-      run:
-        - pip
-    script:
-      - pip check
+      pip_check: true
+  - script:
       - python -c "from pendulum._pendulum import parse_iso8601"
       - python -c "from pendulum._helpers import days_in_year"
 

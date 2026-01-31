@@ -15,12 +15,12 @@ source:
     - 0001-remove-tzdata-dep-for-pip-check.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
     - if: build_platform != target_platform
-      then: 
+      then:
         - python
         - cross-python_${{ target_platform }}
         - maturin >=1.0,<2.0
@@ -51,7 +51,7 @@ tests:
 
 about:
   license: MIT
-  license_file: 
+  license_file:
     - THIRDPARTY.yml
     - LICENSE
   summary: Python datetimes made easy

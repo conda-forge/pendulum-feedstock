@@ -11,8 +11,6 @@ package:
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pendulum-${{ version }}.tar.gz
   sha256: 9aceb5b24e9f55381df08187397e88546b5ba82f698b741cbf1a05c5e2369116
-  patches:
-    - 0001-remove-tzdata-dep-for-pip-check.patch
 
 build:
   number: 0

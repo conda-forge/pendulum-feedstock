@@ -62,15 +62,17 @@ rustflags = [
 EOF
     _xtra_maturin_args+=(--target=aarch64-apple-darwin)
 
-    # This variable must be set to the directory containing the target's libpython DSO
-    export PYO3_CROSS_LIB_DIR=$PREFIX/lib
+    if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" == "1" ]] ; then
+        # This variable must be set to the directory containing the target's libpython DSO
+        export PYO3_CROSS_LIB_DIR=$PREFIX/lib
 
-    # xref: https://github.com/PyO3/pyo3/commit/7beb2720
-    export PYO3_PYTHON_VERSION=${PY_VER}
+        # xref: https://github.com/PyO3/pyo3/commit/7beb2720
+        export PYO3_PYTHON_VERSION=${PY_VER}
 
-    # xref: https://github.com/conda-forge/python-feedstock/issues/621
-    sed -i.bak 's,aarch64,arm64,g' $BUILD_PREFIX/venv/lib/os-patch.py
-    sed -i.bak 's,aarch64,arm64,g' $BUILD_PREFIX/venv/lib/platform-patch.py
+        # xref: https://github.com/conda-forge/python-feedstock/issues/621
+        sed -i.bak 's,aarch64,arm64,g' $BUILD_PREFIX/venv/lib/os-patch.py
+        sed -i.bak 's,aarch64,arm64,g' $BUILD_PREFIX/venv/lib/platform-patch.py
+    fi
 
 elif [ "$target_platform" = "linux-ppc64le" ] ; then
     # as above

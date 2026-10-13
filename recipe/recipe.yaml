@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: pendulum
-  version: 3.2.0
+  version: 3.3.0
 
 package:
   name: pendulum
@@ -10,12 +10,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pendulum-${{ version }}.tar.gz
-  sha256: e80feda2d10fa3ff8b1526715f7d33dcb7e08494b3088f2c8a3ac92d4a4331ce
-  patches:
-    - 0001-remove-tzdata-dep-for-pip-check.patch
+  sha256: 9aceb5b24e9f55381df08187397e88546b5ba82f698b741cbf1a05c5e2369116
 
 build:
-  number: 2
+  number: 0
 
 requirements:
   build:
@@ -30,16 +28,12 @@ requirements:
     - cargo-bundle-licenses
   host:
     - python
-    - maturin >=1.0,<2.0
-    - poetry-core
     - pip
+    - maturin >=1.0,<2.0
   run:
     - python
     - python-dateutil >=2.6
-    - tzdata >=2020.1
-    # from test extra
-    - time-machine >=2.6.0,<3.0.0
-
+    - python-tzdata >=2020.1
 tests:
   - python:
       imports:
